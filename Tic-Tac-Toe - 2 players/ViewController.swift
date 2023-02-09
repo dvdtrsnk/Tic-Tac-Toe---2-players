@@ -119,9 +119,19 @@ class ViewController: UIViewController {
         playerWinsLabel.textColor = .clear
         oPlayerClaimed = ["", ""]
         xPlayerClaimed =  ["", ""]
+        print("\(oPlayerScore) oplayer")
+        print("\(xPlayerClaimed) xplayer")
         
         print("resetGame pressed")
-        a1.setImage(UIImage(systemName: "default"), for: .normal)
+        a1.setImage(nil, for: .normal)
+        a2.setImage(nil, for: .normal)
+        a3.setImage(nil, for: .normal)
+        b1.setImage(nil, for: .normal)
+        b2.setImage(nil, for: .normal)
+        b3.setImage(nil, for: .normal)
+        c1.setImage(nil, for: .normal)
+        c2.setImage(nil, for: .normal)
+        c3.setImage(nil, for: .normal)
     }
     
 }

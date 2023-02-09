@@ -31,7 +31,7 @@
                                                     <constraint firstAttribute="width" constant="90" id="tuu-jE-9eU"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="X" buttonSize="large"/>
+                                                <buttonConfiguration key="configuration" style="gray"/>
                                                 <connections>
                                                     <action selector="fieldButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DbT-8i-bLC"/>
                                                 </connections>
