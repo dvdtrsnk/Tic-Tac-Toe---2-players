@@ -38,13 +38,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var c3: UIButton!
     @IBOutlet weak var oPlayerScoreLabel: UILabel!
     @IBOutlet weak var xPlayerScoreLabel: UILabel!
+    @IBOutlet weak var playerWinsLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        playerWinsLabel.textColor = .clear
     }
     
+    
+    
+    @IBAction func resetButtonPressed(_ sender: UIButton) {
+        resetGame()
+    }
     
     @IBAction func fieldButtonPressed(_ sender: UIButton) {
         if sender.currentImage == nil {
@@ -93,17 +99,29 @@ class ViewController: UIViewController {
             
             if winner != nil {
                 if winner == "xmark" {
+                    playerWinsLabel.text = "x Player Wins!"
                     xPlayerScore += 1
                 } else if winner == "circle" {
+                    playerWinsLabel.text = "o Player Wins!"
                     oPlayerScore += 1
+                } else if winner == "draw" {
+                    playerWinsLabel.text = "It's a draw!"
                 }
                 oPlayerScoreLabel.text = String(oPlayerScore)
                 xPlayerScoreLabel.text = String(xPlayerScore)
-                
+                playerWinsLabel.textColor = .systemBlue
             }
             
         }
         
+    }
+    func resetGame() {
+        playerWinsLabel.textColor = .clear
+        oPlayerClaimed = ["", ""]
+        xPlayerClaimed =  ["", ""]
+        
+        print("resetGame pressed")
+        a1.setImage(UIImage(systemName: "default"), for: .normal)
     }
     
 }

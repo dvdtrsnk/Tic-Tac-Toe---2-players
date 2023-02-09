@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,7 +31,7 @@
                                                     <constraint firstAttribute="width" constant="90" id="tuu-jE-9eU"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray"/>
+                                                <buttonConfiguration key="configuration" style="gray" title="X" buttonSize="large"/>
                                                 <connections>
                                                     <action selector="fieldButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DbT-8i-bLC"/>
                                                 </connections>
@@ -160,17 +161,28 @@
                                 <rect key="frame" x="149" y="684" width="116.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Reset Game"/>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uq6-Oc-pKA"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="o Player Wins!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMf-Sl-Aoe">
+                                <rect key="frame" x="125" y="168" width="164.5" height="32.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uvn-R5-LQI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-1" id="1gv-bO-Z8E"/>
                             <constraint firstItem="uvn-R5-LQI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="30Q-VZ-g4F"/>
+                            <constraint firstItem="yMf-Sl-Aoe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="58X-qE-qa0"/>
                             <constraint firstItem="1hy-fx-yJE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="62w-p0-7ax"/>
                             <constraint firstItem="uvn-R5-LQI" firstAttribute="leading" secondItem="HcY-cb-1Ps" secondAttribute="leading" id="6X4-Ff-MYp"/>
                             <constraint firstItem="URf-IY-666" firstAttribute="centerX" secondItem="RBe-5G-BYY" secondAttribute="centerX" id="9Qw-KS-AWF"/>
                             <constraint firstItem="WWP-Dy-Ufg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BSd-Ay-dtW"/>
+                            <constraint firstItem="yMf-Sl-Aoe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VI2-Ld-wlc"/>
                             <constraint firstItem="uvn-R5-LQI" firstAttribute="baseline" secondItem="URf-IY-666" secondAttribute="baseline" id="YC3-z3-aBy"/>
                             <constraint firstItem="HcY-cb-1Ps" firstAttribute="top" secondItem="uvn-R5-LQI" secondAttribute="bottom" constant="8" id="aKc-hB-tdi"/>
                             <constraint firstItem="URf-IY-666" firstAttribute="leading" secondItem="uvn-R5-LQI" secondAttribute="trailing" constant="97" id="fQM-0Y-PSe"/>
@@ -193,15 +205,19 @@
                         <outlet property="c2" destination="g7h-a0-dvR" id="CcA-Tr-ZK1"/>
                         <outlet property="c3" destination="Ial-UX-Vp9" id="KbC-0a-szx"/>
                         <outlet property="oPlayerScoreLabel" destination="HcY-cb-1Ps" id="1rz-vK-tGP"/>
+                        <outlet property="playerWinsLabel" destination="yMf-Sl-Aoe" id="Apb-Vc-Uq0"/>
                         <outlet property="xPlayerScoreLabel" destination="RBe-5G-BYY" id="mCF-6W-ZcJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139.69465648854961" y="4.9295774647887329"/>
+            <point key="canvasLocation" x="139.13043478260872" y="4.6875"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
