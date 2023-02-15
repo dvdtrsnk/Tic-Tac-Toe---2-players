@@ -195,7 +195,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="a1" destination="1ne-9P-ALV" id="gQ6-0i-2np"/>
+                        <outlet property="a1" destination="1ne-9P-ALV" id="kWW-FA-TXl"/>
                         <outlet property="a2" destination="Cgx-lo-Lj3" id="FSS-7U-RR9"/>
                         <outlet property="a3" destination="lUm-xu-Hdk" id="zmw-us-cl2"/>
                         <outlet property="b1" destination="qaD-gT-S6g" id="jp6-i6-JBN"/>
