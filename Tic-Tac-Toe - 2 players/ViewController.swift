@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var winningCombos = [["a1", "b1", "c1"],
+    var winningCombos = [["a1", "b1", "c1"],  //model
                          ["a2", "b2", "c2"],
                          ["a3", "b3", "c3"],
                          ["a1", "a2", "a3"],
@@ -19,15 +19,15 @@ class ViewController: UIViewController {
                          ["a3", "b2", "c1"]   ]
     
     
-    var currentPlayer = "circle" // může být circle nebo xmark
-    var winner: String?
-    var oPlayerClaimed: Set<String> = ["", ""]
-    var xPlayerClaimed: Set<String> = ["", ""]
+    var currentPlayer = "circle" // model
+    var winner: String?          // model
+    var xPlayerClaimed: Set = ["", ""]
+    var oPlayerClaimed: Set = ["", ""]
     var oPlayerScore = 0
     var xPlayerScore = 0
     
     
-    @IBOutlet weak var a1: UIButton!
+    @IBOutlet weak var a1: UIButton! //Controller
     @IBOutlet weak var b1: UIButton!
     @IBOutlet weak var c1: UIButton!
     @IBOutlet weak var a2: UIButton!
@@ -41,54 +41,46 @@ class ViewController: UIViewController {
     @IBOutlet weak var playerWinsLabel: UILabel!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { //Controller
         super.viewDidLoad()
         playerWinsLabel.textColor = .clear
     }
     
     
     
-    @IBAction func resetButtonPressed(_ sender: UIButton) {
+    @IBAction func resetButtonPressed(_ sender: UIButton) { //Controller
         resetGame()
     }
     
-    @IBAction func fieldButtonPressed(_ sender: UIButton) {
+    @IBAction func fieldButtonPressed(_ sender: UIButton) { //Controller
         if sender.currentImage == nil {
             sender.setImage(UIImage(systemName: currentPlayer), for: .normal)
             if currentPlayer == "circle" {
-                //oPlayer.append(contentsOf: chosenField)
-                oPlayerClaimed.insert(sender.accessibilityLabel ?? "")
+                oPlayerClaimed.insert(sender.accessibilityLabel ?? "") //Model
                 checkWinner()
                 
-                currentPlayer = "xmark"
+                currentPlayer = "xmark" // Model
                 
             } else if currentPlayer == "xmark" {
-                xPlayerClaimed.insert(sender.accessibilityLabel ?? "")
+                xPlayerClaimed.insert(sender.accessibilityLabel ?? "") //Model
                 checkWinner()
-                currentPlayer = "circle"
+                currentPlayer = "circle" // Model
             }
-            
-            
-        } else {
-            print("Field already claimed")
         }
         
         
-        func checkWinner() {
-            var comboCheckNumber = 0
+        func checkWinner() { // Model
             if currentPlayer == "circle" {
-                while comboCheckNumber<=7 {
-                    if oPlayerClaimed.isSuperset(of: winningCombos[comboCheckNumber]) {
+                for x in 0...7 {
+                    if oPlayerClaimed.isSuperset(of: winningCombos[x]) {
                         winner = "circle"
                     }
-                    comboCheckNumber += 1
                 }
             } else if currentPlayer == "xmark" {
-                while comboCheckNumber<=7 {
-                    if xPlayerClaimed.isSuperset(of: winningCombos[comboCheckNumber]) {
+                for x in 0...7 {
+                    if xPlayerClaimed.isSuperset(of: winningCombos[x]) {
                         winner = "xmark"
                     }
-                    comboCheckNumber += 1
                 }
             }
             
@@ -110,28 +102,57 @@ class ViewController: UIViewController {
                 oPlayerScoreLabel.text = String(oPlayerScore)
                 xPlayerScoreLabel.text = String(xPlayerScore)
                 playerWinsLabel.textColor = .systemBlue
+                
+                enableButtons(false)
+
+
             }
             
         }
         
     }
-    func resetGame() {
+    func resetGame() { // Model
+        enableButtons(true)
+        
         playerWinsLabel.textColor = .clear
-        oPlayerClaimed = ["", ""]
-        xPlayerClaimed =  ["", ""]
-        print("\(oPlayerScore) oplayer")
-        print("\(xPlayerClaimed) xplayer")
+        currentPlayer = "circle"
+        winner = nil
+        oPlayerClaimed.removeAll()
+        xPlayerClaimed.removeAll()
         
         print("resetGame pressed")
+
+        a1.configuration?.image = nil
         a1.setImage(nil, for: .normal)
+        a2.configuration?.image = nil
         a2.setImage(nil, for: .normal)
+        a3.configuration?.image = nil
         a3.setImage(nil, for: .normal)
+        b1.configuration?.image = nil
         b1.setImage(nil, for: .normal)
+        b2.configuration?.image = nil
         b2.setImage(nil, for: .normal)
+        b3.configuration?.image = nil
         b3.setImage(nil, for: .normal)
+        c1.configuration?.image = nil
         c1.setImage(nil, for: .normal)
+        c2.configuration?.image = nil
         c2.setImage(nil, for: .normal)
+        c3.configuration?.image = nil
         c3.setImage(nil, for: .normal)
+
+    }
+    
+    func enableButtons(_ buttonStatus: Bool) { // Model
+        a1.isEnabled = buttonStatus
+        a2.isEnabled = buttonStatus
+        a3.isEnabled = buttonStatus
+        b1.isEnabled = buttonStatus
+        b2.isEnabled = buttonStatus
+        b3.isEnabled = buttonStatus
+        c1.isEnabled = buttonStatus
+        c2.isEnabled = buttonStatus
+        c3.isEnabled = buttonStatus
     }
     
 }
