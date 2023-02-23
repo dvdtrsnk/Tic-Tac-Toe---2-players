@@ -25,7 +25,6 @@ class GameBrain: UIViewController {
     var oPlayerScore = 0
     var xPlayerScore = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -38,11 +37,22 @@ class GameBrain: UIViewController {
         winner = "none"
     }
     
+    func claimField(with chosenField: String) {
+        if currentPlayer == constants.circle {
+            oPlayerClaimed.insert(chosenField)
+            checkWinner()
+            currentPlayer = constants.xmark //MODEL
+            
+        } else if currentPlayer == constants.xmark { //MODEL
+            xPlayerClaimed.insert(chosenField)
+            checkWinner()
+            currentPlayer = constants.circle //MODEL
+        }
+    }
+    
     func checkWinner() {
         let claimedFields: Set = xPlayerClaimed.union(oPlayerClaimed)
-        if claimedFields.isSuperset(of: allFields) && winner == "none" {
-            winner = constants.draw
-        } else if currentPlayer == constants.circle {
+        if currentPlayer == constants.circle {
             for x in 0...7 {
                 if oPlayerClaimed.isSuperset(of: winningFieldCombos[x]) {
                     oPlayerScore += 1
@@ -56,6 +66,8 @@ class GameBrain: UIViewController {
                     winner = constants.xmark
                 }
             }
+        } else if claimedFields.isSuperset(of: allFields) && winner == "none" {
+            winner = constants.draw
         }
     }
 }

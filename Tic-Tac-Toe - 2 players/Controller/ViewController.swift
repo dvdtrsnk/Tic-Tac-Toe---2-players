@@ -38,28 +38,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func fieldButtonPressed(_ sender: UIButton) {
-        // Controller zkontroluje že pole není obsazené
-        // Není obsazený = když je aktuální hráč O tak:
-        // přidá hráči pole do jeho Claimed
-        // spustí checkwinner
-        // změní aktuálního hráče na X
-        
-        //Controller
-        
-        
-        if sender.currentImage == nil { //MODEL
-            sender.setImage(UIImage(systemName: gameBrain.currentPlayer), for: .normal)
-            if gameBrain.currentPlayer == constants.circle {
-                gameBrain.oPlayerClaimed.insert(sender.accessibilityLabel ?? "")
-                gameBrain.checkWinner()
-                gameBrain.currentPlayer = constants.xmark //MODEL
-                
-                
-            } else if gameBrain.currentPlayer == constants.xmark { //MODEL
-                gameBrain.xPlayerClaimed.insert(sender.accessibilityLabel ?? "")
-                gameBrain.checkWinner()
-                gameBrain.currentPlayer = constants.circle //MODEL
+        if let chosenField = sender.accessibilityLabel {
+            if sender.currentImage == nil {
+                sender.setImage(UIImage(systemName: gameBrain.currentPlayer), for: .normal)
+                gameBrain.claimField(with: chosenField)
             }
+        } else {
+            fatalError("fieldButtonPressed without sending its accessibilityLabel")
         }
     }
     
