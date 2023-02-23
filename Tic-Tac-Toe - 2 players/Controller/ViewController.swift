@@ -25,11 +25,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var xPlayerScoreLabel: UILabel!
     @IBOutlet weak var playerWinsLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         playerWinsLabel.textColor = .clear
         gameBrain.addObserver(self, forKeyPath: "winner", options: .new, context: nil)
+        gameBrain.addObserver(self, forKeyPath: "oPlayerScore", options: .new, context: nil)
+        gameBrain.addObserver(self, forKeyPath: "xPlayerScore", options: .new, context: nil)
+
     }
     
     @IBAction func resetGamePressed(_ sender: UIBarButtonItem) {
@@ -63,12 +65,14 @@ class ViewController: UIViewController {
         }
     }
     
-    //MARK: observer that updates UI whenever gameBrain.winner changes from none:
+    // MARK: - observer that updates UI whenever gameBrain.winner changes from none:
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "winner" {
+        if keyPath == "winner" || keyPath == "oPlayerScore" || keyPath == "xPlayerScore" {
+            
+            oPlayerScoreLabel.text = String(gameBrain.oPlayerScore)
+            xPlayerScoreLabel.text = String(gameBrain.xPlayerScore)
+            
             if let winner = change?[.newKey] as? String {
-                playerWinsLabel.text = winner
-                playerWinsLabel.textColor = .blue
                 if winner != "none" {
                     if winner == constants.xmark {
                         playerWinsLabel.text = "x Player Wins!"
@@ -77,14 +81,11 @@ class ViewController: UIViewController {
                     } else if winner == constants.draw {
                         playerWinsLabel.text = "It's a draw!"
                     }
-                    oPlayerScoreLabel.text = String(gameBrain.oPlayerScore)
-                    xPlayerScoreLabel.text = String(gameBrain.xPlayerScore)
                     playerWinsLabel.textColor = .systemBlue
                     enableButtons(set: false)
                 }
             }
         }
     }
-    
 }
 

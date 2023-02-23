@@ -7,23 +7,30 @@
 
 import UIKit
 
+
 class GameBrain: UIViewController {
+        
     
-    let allFields = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
-    let winningFieldCombos = [["a1", "b1", "c1"],
-                              ["a2", "b2", "c2"],
-                              ["a3", "b3", "c3"],
-                              ["a1", "a2", "a3"],
-                              ["b1", "b2", "b3"],
-                              ["c1", "c2", "c3"],
-                              ["a1", "b2", "c3"],
-                              ["a3", "b2", "c1"]]
-    var xPlayerClaimed: Set = ["", ""]
-    var oPlayerClaimed: Set = ["", ""]
+    let defaults = UserDefaults.standard
+    private let allFields = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
+    private let winningFieldCombos = [["a1", "b1", "c1"],
+                                      ["a2", "b2", "c2"],
+                                      ["a3", "b3", "c3"],
+                                      ["a1", "a2", "a3"],
+                                      ["b1", "b2", "b3"],
+                                      ["c1", "c2", "c3"],
+                                      ["a1", "b2", "c3"],
+                                      ["a3", "b2", "c1"]]
+    private var xPlayerClaimed: Set = [""]
+    private var oPlayerClaimed: Set = [""]
     var currentPlayer = constants.circle
     @objc dynamic var winner = "none"
-    var oPlayerScore = 0
-    var xPlayerScore = 0
+    var oPlayerName = "oPlayer"
+    var xPlayerName = "xPlayer"
+    @objc dynamic var oPlayerScore = 0
+    @objc dynamic var xPlayerScore = 0
+    
+    var test = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +44,25 @@ class GameBrain: UIViewController {
         winner = "none"
     }
     
+    func resetPlayerScore() {
+        oPlayerScore = 0
+        xPlayerScore = 0
+    }
+    
     func claimField(with chosenField: String) {
         if currentPlayer == constants.circle {
             oPlayerClaimed.insert(chosenField)
             checkWinner()
-            currentPlayer = constants.xmark //MODEL
+            currentPlayer = constants.xmark
             
-        } else if currentPlayer == constants.xmark { //MODEL
+        } else if currentPlayer == constants.xmark {
             xPlayerClaimed.insert(chosenField)
             checkWinner()
-            currentPlayer = constants.circle //MODEL
+            currentPlayer = constants.circle
         }
     }
     
-    func checkWinner() {
+    private func checkWinner() {
         let claimedFields: Set = xPlayerClaimed.union(oPlayerClaimed)
         if currentPlayer == constants.circle {
             for x in 0...7 {
@@ -66,7 +78,8 @@ class GameBrain: UIViewController {
                     winner = constants.xmark
                 }
             }
-        } else if claimedFields.isSuperset(of: allFields) && winner == "none" {
+        }
+        if claimedFields.isSuperset(of: allFields) && winner == "none" {
             winner = constants.draw
         }
     }
