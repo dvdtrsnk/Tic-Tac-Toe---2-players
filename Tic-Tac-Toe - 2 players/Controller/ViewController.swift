@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let winningCombos = [["a1", "b1", "c1"],
+    let winningCombos = [["a1", "b1", "c1"], 
                          ["a2", "b2", "c2"],
                          ["a3", "b3", "c3"],
                          ["a1", "a2", "a3"],
@@ -17,9 +17,10 @@ class ViewController: UIViewController {
                          ["c1", "c2", "c3"],
                          ["a1", "b2", "c3"],
                          ["a3", "b2", "c1"]]
-    
+
+ 
     lazy var allButtons = [a1, a2, a3, b1, b2, b3, c1, c2, c3]
-    var currentPlayer = "circle"
+    var currentPlayer = constants.circle
     var winner: String?
     var xPlayerClaimed: Set = ["", ""]
     var oPlayerClaimed: Set = ["", ""]
@@ -38,27 +39,31 @@ class ViewController: UIViewController {
     @IBOutlet weak var oPlayerScoreLabel: UILabel!
     @IBOutlet weak var xPlayerScoreLabel: UILabel!
     @IBOutlet weak var playerWinsLabel: UILabel!
+    let allFields = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         playerWinsLabel.textColor = .clear
+        oPlayerScoreLabel.text = String(oPlayerScore)
+        xPlayerScoreLabel.text = String(xPlayerScore)
     }
     
-    @IBAction func resetButtonPressed(_ sender: UIButton) {
+    @IBAction func resetGamePressed(_ sender: UIBarButtonItem) {
         resetGame()
     }
     
     @IBAction func fieldButtonPressed(_ sender: UIButton) {
         if sender.currentImage == nil {
             sender.setImage(UIImage(systemName: currentPlayer), for: .normal)
-            if currentPlayer == "circle" {
+            if currentPlayer == constants.circle {
                 oPlayerClaimed.insert(sender.accessibilityLabel ?? "")
                 checkWinner()
-                currentPlayer = "xmark"
-            } else if currentPlayer == "xmark" {
+                currentPlayer = constants.xmark
+            } else if currentPlayer == constants.xmark {
                 xPlayerClaimed.insert(sender.accessibilityLabel ?? "")
                 checkWinner()
-                currentPlayer = "circle"
+                currentPlayer = constants.circle
             }
         }
     }
@@ -68,7 +73,7 @@ class ViewController: UIViewController {
         playerWinsLabel.textColor = .clear
         oPlayerClaimed.removeAll()
         xPlayerClaimed.removeAll()
-        currentPlayer = "circle"
+        currentPlayer = constants.circle
         winner = nil
         
         for button in allButtons {
@@ -77,41 +82,42 @@ class ViewController: UIViewController {
         }
     }
 
-    func checkWinner() {
-        if currentPlayer == "circle" {
+    func checkWinner() { //MODEL
+        let claimedFields: Set = xPlayerClaimed.union(oPlayerClaimed)
+        
+        if claimedFields.isSuperset(of: allFields) && winner == nil {
+            winner = constants.draw
+        } else if currentPlayer == constants.circle {
             for x in 0...7 {
                 if oPlayerClaimed.isSuperset(of: winningCombos[x]) {
-                    winner = "circle"
+                    winner = constants.circle
                 }
             }
-        } else if currentPlayer == "xmark" {
+        } else if currentPlayer == constants.xmark {
             for x in 0...7 {
                 if xPlayerClaimed.isSuperset(of: winningCombos[x]) {
-                    winner = "xmark"
+                    winner = constants.xmark
                 }
             }
-        } else if a1.currentImage != nil && a2.currentImage != nil && a3.currentImage != nil && b1.currentImage != nil && b2.currentImage != nil && b3.currentImage != nil && c1.currentImage != nil && c2.currentImage != nil && c3.currentImage != nil && winner == nil {
-            winner = "draw"
         }
         
-        
         if winner != nil {
-            if winner == "xmark" {
+            if winner == constants.xmark {
                 playerWinsLabel.text = "x Player Wins!"
                 xPlayerScore += 1
-            } else if winner == "circle" {
+            } else if winner == constants.circle {
                 playerWinsLabel.text = "o Player Wins!"
                 oPlayerScore += 1
-            } else if winner == "draw" {
+            } else if winner == constants.draw {
                 playerWinsLabel.text = "It's a draw!"
             }
+            print(oPlayerScore, xPlayerScore)
             oPlayerScoreLabel.text = String(oPlayerScore)
             xPlayerScoreLabel.text = String(xPlayerScore)
             playerWinsLabel.textColor = .systemBlue
             enableButtons(set: false)
         }
     }
-    
     func enableButtons(set buttonStatus: Bool) {
         for button in allButtons {
             button!.isEnabled = buttonStatus
