@@ -26,9 +26,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var xPlayerScoreLabel: UILabel!
     @IBOutlet weak var oPlayerNameLabel: UILabel!
     @IBOutlet weak var xPlayerNameLabel: UILabel!
-    
     @IBOutlet weak var playerWinsLabel: UILabel!
-    
+    @IBOutlet weak var whoseTurnLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         playerWinsLabel.textColor = .clear
@@ -38,18 +38,16 @@ class ViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        gameBrain.oPlayerScore = defaults.integer(forKey: "oPlayerScore")
-        gameBrain.xPlayerScore = defaults.integer(forKey: "xPlayerScore")
-        
-        gameBrain.oPlayerName = defaults.string(forKey: "oPlayerName") ?? "oPlayerName"
-        gameBrain.xPlayerName = defaults.string(forKey: "xPlayerName") ?? "xPlayerName"
-        oPlayerNameLabel.text = "\(gameBrain.oPlayerName) - Score:"
-        xPlayerNameLabel.text = "\(gameBrain.xPlayerName) - Score:"
+        gameBrain.loadPlayerData()
+        updateWhoseTurnUI()
+        oPlayerNameLabel.text = "\(gameBrain.oPlayerName) (o) - Score:"
+        xPlayerNameLabel.text = "\(gameBrain.xPlayerName) (x) - Score:"
     }
     
     @IBAction func resetGamePressed(_ sender: UIBarButtonItem) {
         gameBrain.resetGame()
         resetGameUI()
+        updateWhoseTurnUI()
     }
     
     @IBAction func fieldButtonPressed(_ sender: UIButton) {
@@ -58,14 +56,26 @@ class ViewController: UIViewController {
                 sender.setImage(UIImage(systemName: gameBrain.currentPlayer), for: .normal)
                 gameBrain.claimField(with: chosenField)
             }
+            updateWhoseTurnUI()
         } else {
-            fatalError("fieldButtonPressed without sending its accessibilityLabel")
+            fatalError("fieldButtonPressed.senders accessibilityLabel = nil!")
+        }
+    }
+    
+    func updateWhoseTurnUI() {
+        if gameBrain.currentPlayer == constants.circle {
+            whoseTurnLabel.text = "Its \(gameBrain.oPlayerName)'s Turn!"
+
+        } else if gameBrain.currentPlayer == constants.xmark {
+            whoseTurnLabel.text = "Its \(gameBrain.xPlayerName)'s Turn!"
+
         }
     }
     
     func resetGameUI() {
         enableButtons(set: true)
         playerWinsLabel.textColor = .clear
+        whoseTurnLabel.textColor = .black
         for button in allButtons {
             button!.configuration?.image = nil
             button!.setImage(nil, for: .normal)
@@ -78,7 +88,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - observer that updates UI whenever gameBrain.winner changes from none:
+    // MARK: - observer that updates UI whenever gameBrain.winner changes changes from none:
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "winner" || keyPath == "oPlayerScore" || keyPath == "xPlayerScore" {
             
@@ -88,12 +98,13 @@ class ViewController: UIViewController {
             if let winner = change?[.newKey] as? String {
                 if winner != "none" {
                     if winner == constants.xmark {
-                        playerWinsLabel.text = "x Player Wins!"
+                        playerWinsLabel.text = "\(gameBrain.xPlayerName) Wins!"
                     } else if winner == constants.circle {
-                        playerWinsLabel.text = "o Player Wins!"
+                        playerWinsLabel.text = "\(gameBrain.oPlayerName) Wins!"
                     } else if winner == constants.draw {
                         playerWinsLabel.text = "It's a draw!"
                     }
+                    whoseTurnLabel.textColor = .clear
                     playerWinsLabel.textColor = .systemBlue
                     enableButtons(set: false)
                 }

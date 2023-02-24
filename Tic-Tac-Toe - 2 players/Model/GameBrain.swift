@@ -10,8 +10,6 @@ import UIKit
 
 class GameBrain: UIViewController {
     
-
-    
     let defaults = UserDefaults.standard
     private let allFields = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
     private let winningFieldCombos = [["a1", "b1", "c1"],
@@ -28,12 +26,14 @@ class GameBrain: UIViewController {
     @objc dynamic var winner = "none"
     var oPlayerName = "oPlayer"
     var xPlayerName = "xPlayer"
+    
     @objc dynamic var oPlayerScore = 0
     @objc dynamic var xPlayerScore = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
     
     func resetGame() {
         oPlayerClaimed.removeAll()
@@ -42,6 +42,12 @@ class GameBrain: UIViewController {
         winner = "none"
     }
     
+    func loadPlayerData() {
+        oPlayerScore = defaults.integer(forKey: "oPlayerScore")
+        xPlayerScore = defaults.integer(forKey: "xPlayerScore")
+        oPlayerName = defaults.string(forKey: "oPlayerName") ?? oPlayerName
+        xPlayerName = defaults.string(forKey: "xPlayerName") ?? xPlayerName
+    }
     
     func claimField(with chosenField: String) {
         if currentPlayer == constants.circle {

@@ -63,10 +63,15 @@ class MenuTableViewController: UITableViewController {
             textField.placeholder = "xPlayer User Name"
         }
         let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
-            guard let textField = alert.textFields?.first, let newName = textField.text, !newName.isEmpty else {
+            guard let oPlayerTextField = alert.textFields?[0], let oPlayerName = oPlayerTextField.text, !oPlayerName.isEmpty else {
                 return
             }
-            print("New user name: \(newName)")
+            guard let xPlayerTextField = alert.textFields?[1], let xPlayerName = xPlayerTextField.text, !xPlayerName.isEmpty else {
+                return
+            }
+            self.defaults.setValue(oPlayerName, forKey: "oPlayerName")
+            self.defaults.setValue(xPlayerName, forKey: "xPlayerName")
+            self.navigationController?.popToRootViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(saveAction)
@@ -83,7 +88,7 @@ class MenuTableViewController: UITableViewController {
    }
     
     private func showHelp() {
-        let alert = UIAlertController(title: "Help", message: "This is game helper", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Help", message: "This is simple Tic-Tac-Toe Game for 2 players. In settings you can change Players name or restart their score to 0.", preferredStyle: .alert)
         let doneAction = UIAlertAction(title: "Done", style: .cancel)
         alert.addAction(doneAction)
         print("Help")
