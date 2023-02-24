@@ -136,37 +136,43 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x Player Score: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URf-IY-666">
-                                <rect key="frame" x="242" y="90" width="160" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="o Player Score: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvn-R5-LQI" userLabel="x Player Score:">
-                                <rect key="frame" x="20" y="90" width="125" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="x Player Score: " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="URf-IY-666">
+                                <rect key="frame" x="259" y="91" width="169" height="91"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="8y2-pb-4lK"/>
+                                    <constraint firstAttribute="width" constant="170" id="j8u-nh-C4V"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcY-cb-1Ps">
-                                <rect key="frame" x="20" y="118.33333333333333" width="125" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="o Player Score: " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uvn-R5-LQI" userLabel="x Player Score:">
+                                <rect key="frame" x="0.0" y="91" width="178" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="8y2-pb-4lK"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="NNj-H2-PJI"/>
+                                    <constraint firstAttribute="height" constant="95" id="xuR-Xj-1ZX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBe-5G-BYY">
-                                <rect key="frame" x="244" y="118.33333333333333" width="156" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBe-5G-BYY">
+                                <rect key="frame" x="272" y="196" width="156" height="20.333333333333329"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="o Player Wins!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMf-Sl-Aoe">
-                                <rect key="frame" x="125" y="210.66666666666666" width="178" height="32.333333333333343"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="o Player Wins!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yMf-Sl-Aoe">
+                                <rect key="frame" x="132" y="239.66666666666666" width="164.33333333333337" height="32.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcY-cb-1Ps">
+                                <rect key="frame" x="0.0" y="195" width="125" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -176,21 +182,11 @@
                             <constraint firstItem="1hy-fx-yJE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="71" id="1W0-Wg-dWR"/>
                             <constraint firstItem="yMf-Sl-Aoe" firstAttribute="top" secondItem="HcY-cb-1Ps" secondAttribute="bottom" constant="72" id="9IG-OR-Teh"/>
                             <constraint firstItem="1hy-fx-yJE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="BYw-KG-X6G"/>
-                            <constraint firstItem="uvn-R5-LQI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Ean-U7-qHf"/>
-                            <constraint firstItem="URf-IY-666" firstAttribute="leading" secondItem="uvn-R5-LQI" secondAttribute="trailing" constant="97" id="F7B-NX-Jyh"/>
-                            <constraint firstItem="HcY-cb-1Ps" firstAttribute="top" secondItem="uvn-R5-LQI" secondAttribute="bottom" constant="8" id="Fkt-hv-UMR"/>
-                            <constraint firstItem="uvn-R5-LQI" firstAttribute="leading" secondItem="HcY-cb-1Ps" secondAttribute="leading" id="GzF-Y9-ibQ"/>
                             <constraint firstItem="1hy-fx-yJE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="312" id="Peq-Tc-NRH"/>
-                            <constraint firstItem="yMf-Sl-Aoe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="125" id="TBf-Iq-3Ny"/>
-                            <constraint firstItem="uvn-R5-LQI" firstAttribute="trailing" secondItem="HcY-cb-1Ps" secondAttribute="trailing" id="ZIT-Na-1Ob"/>
-                            <constraint firstItem="URf-IY-666" firstAttribute="centerX" secondItem="RBe-5G-BYY" secondAttribute="centerX" id="etv-S6-5Xd"/>
-                            <constraint firstItem="uvn-R5-LQI" firstAttribute="baseline" secondItem="URf-IY-666" secondAttribute="baseline" id="gzk-WN-Rwi"/>
-                            <constraint firstItem="HcY-cb-1Ps" firstAttribute="baseline" secondItem="RBe-5G-BYY" secondAttribute="baseline" id="jWb-Om-mp8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="URf-IY-666" secondAttribute="trailing" id="Zze-Vu-CX4"/>
                             <constraint firstItem="yMf-Sl-Aoe" firstAttribute="centerX" secondItem="1hy-fx-yJE" secondAttribute="centerX" id="kRO-kR-cqp"/>
                             <constraint firstItem="yMf-Sl-Aoe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lnl-qt-BPM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="URf-IY-666" secondAttribute="trailing" constant="26" id="wiu-fW-huL"/>
-                            <constraint firstItem="RBe-5G-BYY" firstAttribute="leading" secondItem="HcY-cb-1Ps" secondAttribute="trailing" constant="99" id="xPS-mt-7Nq"/>
-                            <constraint firstItem="uvn-R5-LQI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-1" id="yjA-q4-Urs"/>
+                            <constraint firstItem="1hy-fx-yJE" firstAttribute="top" secondItem="yMf-Sl-Aoe" secondAttribute="bottom" constant="40" id="sT0-ve-QFr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Vxr-UP-5jT">
@@ -215,19 +211,21 @@
                         <outlet property="c1" destination="7a9-H7-RN7" id="WrP-Od-gtH"/>
                         <outlet property="c2" destination="g7h-a0-dvR" id="CcA-Tr-ZK1"/>
                         <outlet property="c3" destination="Ial-UX-Vp9" id="KbC-0a-szx"/>
+                        <outlet property="oPlayerNameLabel" destination="uvn-R5-LQI" id="dOm-ox-Mq2"/>
                         <outlet property="oPlayerScoreLabel" destination="HcY-cb-1Ps" id="1rz-vK-tGP"/>
                         <outlet property="playerWinsLabel" destination="yMf-Sl-Aoe" id="Apb-Vc-Uq0"/>
+                        <outlet property="xPlayerNameLabel" destination="URf-IY-666" id="o9P-rl-UgR"/>
                         <outlet property="xPlayerScoreLabel" destination="RBe-5G-BYY" id="mCF-6W-ZcJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038.7850467289718" y="4.5356371490280782"/>
+            <point key="canvasLocation" x="1037.3831775700935" y="4.5356371490280782"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Menu Table View Controller-->
         <scene sceneID="cZc-uE-91Y">
             <objects>
-                <tableViewController id="Hb5-wO-AnT" customClass="MenuViewController" customModule="Tic_Tac_Toe___2_players" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Hb5-wO-AnT" customClass="MenuTableViewController" customModule="Tic_Tac_Toe___2_players" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="1eg-0a-2fO">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

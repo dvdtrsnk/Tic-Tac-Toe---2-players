@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol MenuTableViewControllerDelegate: AnyObject {
+    func resetPlayerScore()
+}
 
-class MenuViewController: UITableViewController {
+class MenuTableViewController: UITableViewController {
     
+    let defaults = UserDefaults.standard
+    weak var delegate: MenuTableViewControllerDelegate?
     private let gameBrain = GameBrain()
     private let menuItems = ["Change User Names", "Reset Players Score", "Help"]
     
@@ -37,7 +42,7 @@ class MenuViewController: UITableViewController {
         
         switch indexPath.row {
         case 0:
-            changeUserNameAlert()
+            changeUserNames()
         case 1:
             resetScore()
         case 2:
@@ -49,7 +54,7 @@ class MenuViewController: UITableViewController {
     
     
     // MARK: - Functions
-    private func changeUserNameAlert() {
+    private func changeUserNames() {
         let alert = UIAlertController(title: "Change User Names", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "oPlayer User Name"
@@ -61,7 +66,6 @@ class MenuViewController: UITableViewController {
             guard let textField = alert.textFields?.first, let newName = textField.text, !newName.isEmpty else {
                 return
             }
-            // Implement user name change logic
             print("New user name: \(newName)")
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -69,6 +73,14 @@ class MenuViewController: UITableViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    func resetScore() {
+        gameBrain.oPlayerScore = 0
+        gameBrain.xPlayerScore = 0
+        defaults.set(gameBrain.oPlayerScore,forKey: "oPlayerScore")
+        defaults.set(gameBrain.xPlayerScore, forKey: "xPlayerScore")
+       navigationController?.popToRootViewController(animated: true)
+   }
     
     private func showHelp() {
         let alert = UIAlertController(title: "Help", message: "This is game helper", preferredStyle: .alert)
@@ -78,7 +90,5 @@ class MenuViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-     func resetScore() {
-        navigationController?.popToRootViewController(animated: true)
-    }
+
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let defaults = UserDefaults.standard
     let gameBrain = GameBrain()
     lazy var allButtons = [a1, a2, a3, b1, b2, b3, c1, c2, c3]
     
@@ -23,6 +24,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var c3: UIButton!
     @IBOutlet weak var oPlayerScoreLabel: UILabel!
     @IBOutlet weak var xPlayerScoreLabel: UILabel!
+    @IBOutlet weak var oPlayerNameLabel: UILabel!
+    @IBOutlet weak var xPlayerNameLabel: UILabel!
+    
     @IBOutlet weak var playerWinsLabel: UILabel!
     
     override func viewDidLoad() {
@@ -31,7 +35,16 @@ class ViewController: UIViewController {
         gameBrain.addObserver(self, forKeyPath: "winner", options: .new, context: nil)
         gameBrain.addObserver(self, forKeyPath: "oPlayerScore", options: .new, context: nil)
         gameBrain.addObserver(self, forKeyPath: "xPlayerScore", options: .new, context: nil)
-
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        gameBrain.oPlayerScore = defaults.integer(forKey: "oPlayerScore")
+        gameBrain.xPlayerScore = defaults.integer(forKey: "xPlayerScore")
+        
+        gameBrain.oPlayerName = defaults.string(forKey: "oPlayerName") ?? "oPlayerName"
+        gameBrain.xPlayerName = defaults.string(forKey: "xPlayerName") ?? "xPlayerName"
+        oPlayerNameLabel.text = "\(gameBrain.oPlayerName) - Score:"
+        xPlayerNameLabel.text = "\(gameBrain.xPlayerName) - Score:"
     }
     
     @IBAction func resetGamePressed(_ sender: UIBarButtonItem) {

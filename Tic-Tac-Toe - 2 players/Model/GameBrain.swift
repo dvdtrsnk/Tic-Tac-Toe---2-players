@@ -9,7 +9,8 @@ import UIKit
 
 
 class GameBrain: UIViewController {
-        
+    
+
     
     let defaults = UserDefaults.standard
     private let allFields = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
@@ -30,12 +31,9 @@ class GameBrain: UIViewController {
     @objc dynamic var oPlayerScore = 0
     @objc dynamic var xPlayerScore = 0
     
-    var test = 5
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
     
     func resetGame() {
         oPlayerClaimed.removeAll()
@@ -44,10 +42,6 @@ class GameBrain: UIViewController {
         winner = "none"
     }
     
-    func resetPlayerScore() {
-        oPlayerScore = 0
-        xPlayerScore = 0
-    }
     
     func claimField(with chosenField: String) {
         if currentPlayer == constants.circle {
@@ -68,6 +62,8 @@ class GameBrain: UIViewController {
             for x in 0...7 {
                 if oPlayerClaimed.isSuperset(of: winningFieldCombos[x]) {
                     oPlayerScore += 1
+                    defaults.set(self.oPlayerScore, forKey: "oPlayerScore")
+                    defaults.set(self.oPlayerScore, forKey: "oPlayerScore")
                     winner = constants.circle
                 }
             }
@@ -75,6 +71,7 @@ class GameBrain: UIViewController {
             for x in 0...7 {
                 if xPlayerClaimed.isSuperset(of: winningFieldCombos[x]) {
                     xPlayerScore += 1
+                    defaults.set(self.xPlayerScore, forKey: "xPlayerScore")
                     winner = constants.xmark
                 }
             }
@@ -83,4 +80,11 @@ class GameBrain: UIViewController {
             winner = constants.draw
         }
     }
+}
+
+extension GameBrain: MenuTableViewControllerDelegate {
+    func resetPlayerScore() {
+        print("IT WORKS!")
+    }
+    
 }
